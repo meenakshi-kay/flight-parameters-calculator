@@ -1,21 +1,21 @@
 {% extends "base.html" %}
 {% block content %}
-<div class="box">
-  <div class="bar"><h2>Performance Report</h2><button class="primary noprint" onclick="window.print()">Print report</button></div>
+<div class="bar"><h2>Report</h2><button class="primary noprint" onclick="window.print()">Print report</button></div>
+<div class="paper">
+  <h2>Aircraft Performance Report</h2>
   <p class="mute">Gross weight {{ '{:,.0f}'.format(P.W) }} N · wing area {{ P.S }} m² · AR {{ P.AR }} · e {{ P.e }} · CD,0 {{ P.CD0 }} · {{ P.eng|int }} engines × {{ '{:,.0f}'.format(P.Tpe) }} N</p>
-</div>
-{% for s in sections %}
-<div class="box">
-  <h2>Altitude {{ s.h }} km</h2>
+  {% for s in sections %}
+  <h2 class="sec">Altitude {{ s.h }} km</h2>
   <div class="grid">
     {% for title, rows in s.cards %}
     <div><h3>{{ title }}</h3>{% for label, value in rows %}<div class="kv"><span>{{ label }}</span><b>{{ value }}</b></div>{% endfor %}</div>
     {% endfor %}
   </div>
+  <div class="grid wide plotgrid">
+    {% for title, img in s.imgs %}<div><h3>{{ title }}</h3><img src="data:image/png;base64,{{ img }}" alt="{{ title }}"></div>{% endfor %}
+  </div>
+  {% endfor %}
+  <h2 class="sec">Altitude comparison</h2>
+  <div class="plotgrid"><img src="data:image/png;base64,{{ alt_img[1] }}" alt="Altitude comparison"></div>
 </div>
-<div class="box"><div class="grid">
-  {% for title, img in s.imgs %}<div><h3>{{ title }}</h3><img src="data:image/png;base64,{{ img }}" alt="{{ title }}"></div>{% endfor %}
-</div></div>
-{% endfor %}
-<div class="box"><h2>Altitude comparison</h2><img src="data:image/png;base64,{{ alt_img[1] }}" alt="Altitude comparison"></div>
 {% endblock %}

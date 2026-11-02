@@ -2,10 +2,7 @@
 {% block content %}
 <div class="bar">
   <h2>Calculations</h2>
-  <div class="seg">
-    <a class="{{ 'on' if alt == 1 }}" href="?alt=1">1 km</a>
-    <a class="{{ 'on' if alt == 4 }}" href="?alt=4">4 km</a>
-  </div>
+  <div class="seg">{% for a in alts %}<a class="{{ 'on' if alt == a }}" href="?alt={{ a }}">{{ a }} km</a>{% endfor %}</div>
 </div>
 <div class="grid">
   {% for title, rows in cards %}
@@ -15,5 +12,5 @@
   </div>
   {% endfor %}
 </div>
-<div class="note">Note: take-off uses CL,max for the ground roll and the fixed airborne arc radius R from the Inputs page. Results are for teaching purposes only.</div>
+<div class="note">Note: take-off uses the ground-roll CL and the airborne arc radius R from the Inputs page. Results are for teaching purposes only.</div>
 {% endblock %}

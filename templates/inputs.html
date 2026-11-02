@@ -1,16 +1,24 @@
 {% extends "base.html" %}
 {% block content %}
-<form class="box" method="post">
-  <h2>Inputs</h2>
-  {% for key, label, default in fields %}
-  <div class="row">
-    <label for="{{ key }}">{{ label }}</label>
-    <input id="{{ key }}" name="{{ key }}" type="number" step="any" value="{{ P[key] }}">
+<form method="post">
+  <div class="bar"><h2>Inputs</h2><span class="mute">{% if msg %}Reset to the tutorial values.{% else %}Edit any value, then calculate.{% endif %}</span></div>
+  <div class="grid wide">
+    {% for title, items in groups %}
+    <div class="box">
+      <h3>{{ title }}</h3>
+      {% for key, label, default in items %}
+      <div class="row">
+        <label for="{{ key }}">{{ label }}</label>
+        <input id="{{ key }}" name="{{ key }}" type="number" step="any" value="{{ P[key] }}" required>
+      </div>
+      {% endfor %}
+    </div>
+    {% endfor %}
   </div>
-  {% endfor %}
   <p class="mute">Fuel, TSFC, flap CL,max and μ are part of the specification but are not used by the current calculations.</p>
-  <button class="primary" type="submit">Save inputs</button>
-  <button class="secondary" type="submit" name="reset" value="1" formnovalidate>Reset to defaults</button>
-  {% if saved %}<span class="mute"> Saved.</span>{% endif %}
+  <div class="actions">
+    <button class="primary" type="submit" name="action" value="calc">Save &amp; calculate</button>
+    <button class="secondary" type="submit" name="action" value="reset" formnovalidate>Reset to defaults</button>
+  </div>
 </form>
 {% endblock %}

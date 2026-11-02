@@ -7,10 +7,10 @@
   <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
-<div class="app">
-  <aside class="side" id="side">
+<div class="app" id="app">
+  <aside class="side">
     <div class="tools">
-      <button class="icon" onclick="document.getElementById('side').classList.toggle('hide')" title="Hide menu">☰</button>
+      <button class="icon" onclick="document.getElementById('app').classList.toggle('collapsed')" title="Toggle menu">☰</button>
       <a class="icon" href="{{ url_for('home') }}" title="Home">⌂</a>
     </div>
     <a class="nav {{ 'on' if page == 'inputs' }}" href="{{ url_for('inputs') }}">Inputs</a>
@@ -18,14 +18,19 @@
     <a class="nav {{ 'on' if page == 'plots' }}" href="{{ url_for('plots') }}">Plots</a>
     <a class="nav {{ 'on' if page == 'report' }}" href="{{ url_for('report') }}">Generate Report</a>
   </aside>
-  <div class="main">
-    <div class="box"><h1>Flight Performance Calculator</h1></div>
-    <div class="box">
+  <main class="main">
+
+    <header class="box head">
+  <h1>Flight Performance Calculator</h1>
+  <div class="who">Meenakshi K · 1MS24AS026</div>
+</header>
+
+    <section class="box">
       <h2>Problem Statement</h2>
-      <p>A customer has provided aerodynamic and propulsive specifications for a proposed twin-engine aircraft. As the aircraft performance engineer, evaluate its major performance characteristics (thrust and power, rate of climb, maximum speed, V-n envelope, take-off) at altitudes of 1 km and 4 km, and present the results with calculations and plots.</p>
-    </div>
-    {% block content %}{% endblock %}
-  </div>
+      <p>A customer has provided aerodynamic and propulsive specifications for a proposed twin-engine aircraft. As the aircraft performance engineer, evaluate its major performance characteristics (thrust and power, rate of climb, maximum speed, V-n envelope, take-off) at the chosen altitudes, and present the results with calculations and plots.</p>
+    </section>
+    <div class="content">{% block content %}{% endblock %}</div>
+  </main>
 </div>
 </body>
 </html>
