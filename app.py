@@ -1,11 +1,13 @@
+import os
+
 from flask import Flask, redirect, render_template, request, session, url_for
 import performance as perf
 from performance import altitudes, ALT_KEYS
 
 
-app = Flask(__name__)
-app.secret_key = "change-me"  # needed for session storage of inputs
 
+app = Flask(__name__)
+app.secret_key = os.environ.get("SECRET_KEY", "dev-only-key")  # needed for session storage of inputs
 
 def params():
     P = dict(perf.DEFAULTS)
