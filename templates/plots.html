@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="bar">
+  <h2>Plots</h2>
+  <div class="seg">
+    <a class="{{ 'on' if alt == 1 }}" href="?alt=1">1 km</a>
+    <a class="{{ 'on' if alt == 4 }}" href="?alt=4">4 km</a>
+  </div>
+</div>
+<div class="grid">
+  {% for title, img in imgs %}
+  <div class="box"><h3>{{ title }}</h3><img src="data:image/png;base64,{{ img }}" alt="{{ title }}"></div>
+  {% endfor %}
+</div>
+{% endblock %}

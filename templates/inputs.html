@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block content %}
+<form class="box" method="post">
+  <h2>Inputs</h2>
+  {% for key, label, default in fields %}
+  <div class="row">
+    <label for="{{ key }}">{{ label }}</label>
+    <input id="{{ key }}" name="{{ key }}" type="number" step="any" value="{{ P[key] }}">
+  </div>
+  {% endfor %}
+  <p class="mute">Fuel, TSFC, flap CL,max and μ are part of the specification but are not used by the current calculations.</p>
+  <button class="primary" type="submit">Save inputs</button>
+  <button class="secondary" type="submit" name="reset" value="1" formnovalidate>Reset to defaults</button>
+  {% if saved %}<span class="mute"> Saved.</span>{% endif %}
+</form>
+{% endblock %}

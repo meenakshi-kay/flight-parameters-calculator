@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="box">
+  <h2>Explanation</h2>
+  <p>Use the menu on the left to move through the calculator:</p>
+  <p><b>Inputs</b> – the aircraft specifications and the air density at each altitude. All values can be edited.</p>
+  <p><b>Calculations</b> – results for 1 km and 4 km: minimum thrust required, maximum speed, rate of climb, V-n limits and take-off distance.</p>
+  <p><b>Plots</b> – matplotlib plots of thrust, power, rate of climb, the V-n diagram, take-off trajectory, hodograph and the effect of altitude.</p>
+  <p><b>Generate Report</b> – a combined, printable summary.</p>
+  <p class="mute">Method: drag polar CD = CD,0 + k·CL², thrust required TR = qSCD,0 + 2kW²/(ρSV²), thrust available scaled by the density ratio ρ/ρ₀.</p>
+</div>
+{% endblock %}
